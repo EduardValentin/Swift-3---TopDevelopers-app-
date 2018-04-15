@@ -1,7 +1,5 @@
 import UIKit
 import Alamofire
-import Foundation
-
 
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource{
     
@@ -11,10 +9,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     private var clearMemoryTimer = Timer.scheduledTimer(timeInterval: 30.0*60.0, target: self, selector: #selector(clearMemory), userInfo: nil, repeats: true)
     private let ramCache = NSCache<NSString,UserData>()
     
-    
     let param: Parameters = [
+        "pagesize": 10,
         "order": "desc",
-        "max" : 10,
         "sort" : "reputation",
         "site" : "stackoverflow"
     ]
@@ -27,16 +24,24 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 
     
     override func viewDidLoad() {
-    print("view loaded")
-        
         super.viewDidLoad()
         self.loadData()
 
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        let nibName = UINib(nibName: "CustomTableViewCell", bundle: nil)
-        tableView.register(nibName, forCellReuseIdentifier: "tableViewCell")
+        if userData.numberOfUsers() == 0 && currentReachabilityStatus == .notReachable {
+            // let user know that it needs to connect to internet
+            
+            let alert = UIAlertController(title: "No internet connection",
+                                          message: "You need to connect to internet in order to download the data",
+                                          preferredStyle: UIAlertControllerStyle.alert)
+            
+            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            tableView.delegate = self
+            tableView.dataSource = self
+            let nibName = UINib(nibName: "CustomTableViewCell", bundle: nil)
+            tableView.register(nibName, forCellReuseIdentifier: "tableViewCell")
+        }
     }
 
     
@@ -47,7 +52,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! CustomTableViewCell
        
-        cell.commonInit(image: self.userData.userAtIndex(index: indexPath.item)!.ProfilePicImage!, labelText: self.userData.userAtIndex(index: indexPath.item)!.Username)
+        cell.commonInit(image: self.userData.userAtIndex(index: indexPath.item)!.profilePicImage!, labelText: self.userData.userAtIndex(index: indexPath.item)!.username)
         
         return cell
     }
@@ -58,12 +63,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailViewController = DetailsUserViewController()
-        detailViewController.commonInit(image: self.userData.userAtIndex(index: indexPath.item)!.ProfilePicImage!,
-                                        name: self.userData.userAtIndex(index: indexPath.item)!.Username,
-                                        location: self.userData.userAtIndex(index: indexPath.item)!.Location,
-                                        bronzeBadges: self.userData.userAtIndex(index: indexPath.item)!.BronzeBadges,
-                                        silverBadges: self.userData.userAtIndex(index: indexPath.item)!.SilverBadges,
-                                        goldBadges: self.userData.userAtIndex(index: indexPath.item)!.GoldBadges)
+        detailViewController.commonInit(image: self.userData.userAtIndex(index: indexPath.item)!.profilePicImage!,
+                                        name: self.userData.userAtIndex(index: indexPath.item)!.username,
+                                        location: self.userData.userAtIndex(index: indexPath.item)!.location!,
+                                        bronzeBadges: self.userData.userAtIndex(index: indexPath.item)!.bronzeBadges,
+                                        silverBadges: self.userData.userAtIndex(index: indexPath.item)!.silverBadges,
+                                        goldBadges: self.userData.userAtIndex(index: indexPath.item)!.goldBadges)
         
         self.navigationController?.pushViewController(detailViewController, animated: true)
         self.tableView.deselectRow(at: indexPath, animated: true)
@@ -79,7 +84,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         if let cachedUsers = self.ramCache.object(forKey: "Data" ) {
             print("data was on ram")
             self.userData.SavedData = cachedUsers.SavedData
-            
         }
         else if let savedUsers = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? UserData {
             // check if its on disk
@@ -98,34 +102,22 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             try FileManager.default.removeItem(atPath: filePath)
         }
         catch{
-            print("Error in clearMemory()")
+            print("No data was saved on disk.")
         }
     }
     
-    
-    
     private func requestDataFromApi() {
         // GET the data from the stackexchange api
-        
-        
-        
         Alamofire.request("https://api.stackexchange.com/2.2/users", method: .get, parameters: param).responseJSON { (response) -> (Void) in
             
-            if let json = response.result.value {
+            if let json = response.result.value as? [String: Any],let items = json["items"] as? [[String: Any]] {
                 // we got a result
-                
-                /* I know this is a bit ugly */
-                let json1 = json as! [String:AnyObject]
-                let usersInfoFromJSON = json1["items"] as! NSArray       // remember to cast it as NSDictionary
-                
-                
-                for userInfo in usersInfoFromJSON {
-                    
-                    let userDict = userInfo as! NSDictionary
+        
+                for userInfo in items {
                     
                     // download user image from url
                     
-                    Alamofire.request(userDict["profile_image"] as! String).responseData { (response) in
+                    Alamofire.request(userInfo["profile_image"] as! String).responseData { (response) in
                         if response.error == nil {
                             
                             //print(response.result)
@@ -140,7 +132,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                                 // check if user has location set, if not display a proper message
                                 var userLocation:String=""
                                 
-                                if let checkLocation = (userDict["location"] as? String) {
+                                if let checkLocation = (userInfo["location"] as? String) {
                                     userLocation = checkLocation
                                 } else {
                                     userLocation = "Location is not set."
@@ -148,29 +140,19 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                                 
                                 // get every badge count from the json to use it in User constructor
                                 
-                                let badgeCounts = userDict["badge_counts"] as? [String:Int]
-                                
-                                var goldb = 0
-                                var bronzeb = 0
-                                var silverb = 0
-                                
-                                if badgeCounts != nil {
-                                    bronzeb = badgeCounts!["bronze"]!
-                                    silverb = badgeCounts!["silver"]!
-                                    goldb   =   badgeCounts!["gold"]!
-                                }
-                                
-                                
-                                let newUser = User(username: userDict["display_name"] as! String,
+                                let badgeCounts = userInfo["badge_counts"] as? [String:Int]
+                                let goldb = badgeCounts?["gold"] ?? 0
+                                let bronzeb = badgeCounts?["silver"] ?? 0
+                                let silverb = badgeCounts?["bronze"] ?? 0
+                                let newUser = User(username: userInfo["display_name"] as! String,
                                                    location: userLocation,
                                                    bronzeBadges: bronzeb,
                                                    silverBadges: silverb,
                                                    goldBadges: goldb,
-                                                   profilePicUrl: userDict["profile_image"] as! String,
+                                                   profilePicUrl: userInfo["profile_image"] as? String,
                                                    profilePicImg: imageView.image)
                                 
                                 self.saveData(user: newUser)
-                                
                                 self.tableView.reloadData()
                                 
                             }

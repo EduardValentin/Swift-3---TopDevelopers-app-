@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2362C7F5208360A300BCEF08 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2362C7F4208360A300BCEF08 /* Reachability.swift */; };
 		237B3A30207FAE2E001BCBD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B3A2F207FAE2E001BCBD9 /* AppDelegate.swift */; };
 		237B3A32207FAE2E001BCBD9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B3A31207FAE2E001BCBD9 /* ViewController.swift */; };
 		237B3A35207FAE2E001BCBD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 237B3A33207FAE2E001BCBD9 /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2362C7F4208360A300BCEF08 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		237B3A2C207FAE2E001BCBD9 /* TopDevelopers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TopDevelopers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		237B3A2F207FAE2E001BCBD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		237B3A31207FAE2E001BCBD9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				237B3A36207FAE2E001BCBD9 /* TopDevelopers.xcdatamodeld */,
 				23EF0B432081EC5D0007CF0F /* User.swift */,
 				239B181520822B99001B8B2B /* UserData.swift */,
+				2362C7F4208360A300BCEF08 /* Reachability.swift */,
 			);
 			path = TopDevelopers;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				23EF0B442081EC5E0007CF0F /* User.swift in Sources */,
 				237B3A32207FAE2E001BCBD9 /* ViewController.swift in Sources */,
 				23A816B32080D3E500C72F61 /* CustomTableViewCell.swift in Sources */,
+				2362C7F5208360A300BCEF08 /* Reachability.swift in Sources */,
 				237B3A30207FAE2E001BCBD9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

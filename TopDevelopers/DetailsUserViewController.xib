@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,79 +26,91 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RfL-0l-iqt">
-                    <rect key="frame" x="97" y="104" width="181" height="180"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BOW-8I-aca">
+                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RfL-0l-iqt">
+                            <rect key="frame" x="87.5" y="8" width="200" height="180"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="200" id="a2j-Qx-E4s"/>
+                                <constraint firstAttribute="height" constant="180" id="ib3-S1-wLt"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nume" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufG-fR-M02">
+                            <rect key="frame" x="0.0" y="196" width="375" height="43"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="43" id="8CV-ga-8ga"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Locatie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wuz-k2-Bbx">
+                            <rect key="frame" x="0.0" y="247" width="375" height="43"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="43" id="gdh-tw-gVf"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Numar badge-uri gold" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JlZ-Wd-8CK">
+                            <rect key="frame" x="0.0" y="298" width="375" height="43"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="43" id="jd1-Qu-UlT"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Numar badge-uri bronz" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E63-pA-Quv">
+                            <rect key="frame" x="0.0" y="349" width="375" height="43"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="43" id="Pge-8n-z4w"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Numar badge-uri argint" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HQt-Bz-aal">
+                            <rect key="frame" x="0.0" y="400" width="375" height="43"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="43" id="dug-9y-QNB"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="180" id="HGP-3D-gg1"/>
+                        <constraint firstAttribute="trailing" secondItem="ufG-fR-M02" secondAttribute="trailing" id="2aM-Dc-uIy"/>
+                        <constraint firstItem="E63-pA-Quv" firstAttribute="trailing" secondItem="HQt-Bz-aal" secondAttribute="trailing" id="4JV-dx-1X4"/>
+                        <constraint firstItem="JlZ-Wd-8CK" firstAttribute="trailing" secondItem="E63-pA-Quv" secondAttribute="trailing" id="8yv-Yq-2L4"/>
+                        <constraint firstItem="E63-pA-Quv" firstAttribute="top" secondItem="JlZ-Wd-8CK" secondAttribute="bottom" constant="8" symbolic="YES" id="FiR-A6-iYg"/>
+                        <constraint firstItem="ufG-fR-M02" firstAttribute="top" secondItem="RfL-0l-iqt" secondAttribute="bottom" constant="8" symbolic="YES" id="K7L-j0-LFb"/>
+                        <constraint firstItem="HQt-Bz-aal" firstAttribute="top" secondItem="E63-pA-Quv" secondAttribute="bottom" constant="8" symbolic="YES" id="Lo8-UK-KMc"/>
+                        <constraint firstItem="ufG-fR-M02" firstAttribute="leading" secondItem="Wuz-k2-Bbx" secondAttribute="leading" id="Rly-7J-8cx"/>
+                        <constraint firstItem="RfL-0l-iqt" firstAttribute="top" secondItem="BOW-8I-aca" secondAttribute="topMargin" id="TN2-5f-pZ6"/>
+                        <constraint firstItem="E63-pA-Quv" firstAttribute="leading" secondItem="HQt-Bz-aal" secondAttribute="leading" id="Tz9-Ei-UAI"/>
+                        <constraint firstItem="RfL-0l-iqt" firstAttribute="centerX" secondItem="BOW-8I-aca" secondAttribute="centerX" id="Ye3-nt-ohm"/>
+                        <constraint firstItem="JlZ-Wd-8CK" firstAttribute="top" secondItem="Wuz-k2-Bbx" secondAttribute="bottom" constant="8" symbolic="YES" id="fgI-hD-7u5"/>
+                        <constraint firstItem="ufG-fR-M02" firstAttribute="leading" secondItem="BOW-8I-aca" secondAttribute="leading" id="hLH-KH-noK"/>
+                        <constraint firstItem="Wuz-k2-Bbx" firstAttribute="top" secondItem="ufG-fR-M02" secondAttribute="bottom" constant="8" symbolic="YES" id="ik4-Zl-Ydu"/>
+                        <constraint firstItem="RfL-0l-iqt" firstAttribute="centerX" secondItem="ufG-fR-M02" secondAttribute="centerX" id="jdl-Bq-jhu"/>
+                        <constraint firstItem="JlZ-Wd-8CK" firstAttribute="leading" secondItem="E63-pA-Quv" secondAttribute="leading" id="lfg-LE-Jhc"/>
+                        <constraint firstItem="Wuz-k2-Bbx" firstAttribute="leading" secondItem="JlZ-Wd-8CK" secondAttribute="leading" id="nR1-p7-2sL"/>
+                        <constraint firstAttribute="bottom" secondItem="HQt-Bz-aal" secondAttribute="bottom" constant="204" id="sYH-xu-ZP3"/>
+                        <constraint firstItem="Wuz-k2-Bbx" firstAttribute="trailing" secondItem="JlZ-Wd-8CK" secondAttribute="trailing" id="thI-1q-VhR"/>
+                        <constraint firstItem="ufG-fR-M02" firstAttribute="trailing" secondItem="Wuz-k2-Bbx" secondAttribute="trailing" id="wAw-oC-giE"/>
                     </constraints>
-                </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nume" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufG-fR-M02">
-                    <rect key="frame" x="0.0" y="373" width="375" height="43"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="43" id="sZG-Wo-zjB"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Locatie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wuz-k2-Bbx">
-                    <rect key="frame" x="0.0" y="424" width="375" height="43"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="43" id="GUJ-Cj-uEE"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Numar badge-uri gold" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JlZ-Wd-8CK">
-                    <rect key="frame" x="0.0" y="577" width="375" height="43"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="43" id="Pnl-z1-64J"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Numar badge-uri bronz" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E63-pA-Quv">
-                    <rect key="frame" x="0.0" y="475" width="375" height="43"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="43" id="Aoh-hI-AwS"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Numar badge-uri argint" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HQt-Bz-aal">
-                    <rect key="frame" x="0.0" y="526" width="375" height="43"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="43" id="CzH-C2-mWL"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                </scrollView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="ufG-fR-M02" firstAttribute="top" secondItem="RfL-0l-iqt" secondAttribute="bottom" constant="89" id="0DV-JU-dwY"/>
-                <constraint firstItem="E63-pA-Quv" firstAttribute="top" secondItem="Wuz-k2-Bbx" secondAttribute="bottom" constant="8" symbolic="YES" id="2jn-se-z3H"/>
-                <constraint firstItem="JlZ-Wd-8CK" firstAttribute="top" secondItem="HQt-Bz-aal" secondAttribute="bottom" constant="8" symbolic="YES" id="3fR-1Y-MV1"/>
-                <constraint firstItem="ufG-fR-M02" firstAttribute="leading" secondItem="Wuz-k2-Bbx" secondAttribute="leading" id="3gy-Xh-297"/>
-                <constraint firstItem="Wuz-k2-Bbx" firstAttribute="leading" secondItem="E63-pA-Quv" secondAttribute="leading" id="8Nu-YW-VLZ"/>
-                <constraint firstItem="HQt-Bz-aal" firstAttribute="leading" secondItem="JlZ-Wd-8CK" secondAttribute="leading" id="8af-nF-PHt"/>
-                <constraint firstItem="RfL-0l-iqt" firstAttribute="centerX" secondItem="ufG-fR-M02" secondAttribute="centerX" id="CVv-A0-j3N"/>
-                <constraint firstItem="HQt-Bz-aal" firstAttribute="trailing" secondItem="JlZ-Wd-8CK" secondAttribute="trailing" id="K71-TF-LbN"/>
-                <constraint firstItem="HQt-Bz-aal" firstAttribute="top" secondItem="E63-pA-Quv" secondAttribute="bottom" constant="8" symbolic="YES" id="KkN-x9-Iy2"/>
-                <constraint firstItem="E63-pA-Quv" firstAttribute="trailing" secondItem="HQt-Bz-aal" secondAttribute="trailing" id="PII-8f-nAL"/>
-                <constraint firstItem="Wuz-k2-Bbx" firstAttribute="top" secondItem="ufG-fR-M02" secondAttribute="bottom" constant="8" symbolic="YES" id="Rdq-pb-RVz"/>
-                <constraint firstItem="RfL-0l-iqt" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="SU3-QV-9Km"/>
-                <constraint firstItem="E63-pA-Quv" firstAttribute="leading" secondItem="HQt-Bz-aal" secondAttribute="leading" id="fIr-pd-0NQ"/>
-                <constraint firstItem="Wuz-k2-Bbx" firstAttribute="trailing" secondItem="E63-pA-Quv" secondAttribute="trailing" id="fLh-E0-1os"/>
-                <constraint firstItem="RfL-0l-iqt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="104" id="gUW-Du-V1s"/>
-                <constraint firstItem="ufG-fR-M02" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hYb-g9-3an"/>
-                <constraint firstAttribute="bottom" secondItem="JlZ-Wd-8CK" secondAttribute="bottom" constant="47" id="qwk-Tf-EPQ"/>
-                <constraint firstItem="ufG-fR-M02" firstAttribute="trailing" secondItem="Wuz-k2-Bbx" secondAttribute="trailing" id="rrq-mw-TNE"/>
-                <constraint firstItem="RfL-0l-iqt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="97" id="uZp-Hb-Gfi"/>
+                <constraint firstItem="BOW-8I-aca" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="F0o-hj-HnV"/>
+                <constraint firstItem="BOW-8I-aca" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="P5q-7b-WkP"/>
+                <constraint firstAttribute="bottom" secondItem="BOW-8I-aca" secondAttribute="bottom" id="pTA-oM-eWe"/>
+                <constraint firstAttribute="trailing" secondItem="BOW-8I-aca" secondAttribute="trailing" id="v3S-OY-xs6"/>
             </constraints>
             <point key="canvasLocation" x="24.5" y="51.5"/>
         </view>

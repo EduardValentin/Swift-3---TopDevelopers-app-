@@ -1,10 +1,3 @@
-//
-//  UserData.swift
-//  TopDevelopers
-//
-//  Created by Eduard Valentin on 14/04/2018.
-//  Copyright © 2018 Eduard Valentin. All rights reserved.
-//
 
 import Foundation
 
@@ -25,6 +18,8 @@ class UserData: NSObject,NSCoding {
     required init?(coder aDecoder: NSCoder) {
         if let userObj = aDecoder.decodeObject(forKey: Keys.Data) as? [User] {
             _users = userObj
+        } else {
+            return nil
         }
         
     }
@@ -54,7 +49,7 @@ class UserData: NSObject,NSCoding {
         if(index < _users.count) {
             return _users[index]
         } else {
-            print("Error in userAtINdex(() index to big")
+            print("Error in userAtINdex(): index to big")
             return nil
         }
     }
